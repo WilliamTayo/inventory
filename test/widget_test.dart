@@ -8,7 +8,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:inventory/Views/login_view.dart';
-import 'package:inventory/main.dart';
 
 void main() {
   testWidgets('HomePage renders register screen', (WidgetTester tester) async {
