@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'dart:developer' as devtools show log;
 
 class LoginView extends StatefulWidget {
   const LoginView({super.key});
@@ -59,18 +60,21 @@ class _LoginViewState extends State<LoginView> {
                       email: email,
                       password: password,
                     );
-                print(userCredential);
+                devtools.log(userCredential.toString());
+                Navigator.of(
+                  context,
+                ).pushNamedAndRemoveUntil('/notes/', (route) => false);
               } on FirebaseAuthException catch (e) {
                 if (e.code == 'invalid-credential') {
-                  print('Invalid email or password');
+                  devtools.log('Invalid email or password');
                 } else if (e.code == 'invalid-email') {
-                  print('Please enter a valid email');
+                  devtools.log('Please enter a valid email');
                 } else if (e.code == 'user-disabled') {
-                  print('This account has been disabled');
+                  devtools.log('This account has been disabled');
                 } else if (e.code == 'too-many-requests') {
-                  print('Too many attempts. Try again later');
+                  devtools.log('Too many attempts. Try again later');
                 } else {
-                  print('Login failed: ${e.code}');
+                  devtools.log('Login failed: ${e.code}');
                 }
               }
             },
