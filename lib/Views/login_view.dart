@@ -30,10 +30,9 @@ class _LoginViewState extends State<LoginView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Login'),
+        title: const Text("Login"),
         backgroundColor: Colors.blueAccent,
       ),
-
       body: Column(
         children: [
           TextField(
@@ -41,26 +40,19 @@ class _LoginViewState extends State<LoginView> {
             keyboardType: TextInputType.emailAddress,
             enableSuggestions: false,
             autocorrect: false,
-            decoration: const InputDecoration(
-              hintText: 'Enter your email here',
-            ),
+            decoration: InputDecoration(hintText: 'Enter your email'),
           ),
-
           TextField(
             controller: _password,
             obscureText: true,
-            autocorrect: false,
             enableSuggestions: false,
-            decoration: const InputDecoration(
-              hintText: 'Enter your password here',
-            ),
+            autocorrect: false,
+            decoration: InputDecoration(hintText: 'Enter your password'),
           ),
-
           TextButton(
             onPressed: () async {
-              final email = _email.text.trim();
+              final email = _email.text;
               final password = _password.text;
-
               try {
                 final userCredential = await FirebaseAuth.instance
                     .signInWithEmailAndPassword(
@@ -82,7 +74,7 @@ class _LoginViewState extends State<LoginView> {
                 }
               }
             },
-            child: Text('Login'),
+            child: const Text('Login'),
           ),
           TextButton(
             onPressed: () {
@@ -90,7 +82,7 @@ class _LoginViewState extends State<LoginView> {
                 context,
               ).pushNamedAndRemoveUntil('/register/', (route) => false);
             },
-            child: Text('Not registered yet? Register here!'),
+            child: const Text('Don\'t have an account? Register here!'),
           ),
         ],
       ),
